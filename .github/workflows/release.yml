@@ -34,14 +34,5 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build App
-        run: pnpm run build-dummy-app
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages
-          folder: dist
-
       - name: Publish to NPM
         run: npm publish
