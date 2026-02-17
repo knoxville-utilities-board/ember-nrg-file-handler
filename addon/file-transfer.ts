@@ -65,7 +65,14 @@ export default class FileTransfer {
       if (this.#request.status >= 200 && this.#request.status < 300) {
         this._result = this.#request.response;
       } else {
-        this._error = this.#request.responseText ?? this.#request.statusText;
+        if (
+          this.#request.responseType === '' ||
+          this.#request.responseType === 'text'
+        ) {
+          this._error = this.#request.responseText;
+        }
+
+        this._error ??= this.#request.statusText;
       }
     });
     this.#request.upload.addEventListener('progress', this.#updateProgress);
