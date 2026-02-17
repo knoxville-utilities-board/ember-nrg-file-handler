@@ -24,9 +24,12 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Update npm to latest
+        run: npm install -g npm@latest # ensure that the globally installed npm is new enough to support OIDC
 
       - name: Install Dependencies
         run: pnpm install
